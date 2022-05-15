@@ -2,6 +2,7 @@ package com.georgeracu.vehicle.wmi;
 
 import org.apache.commons.lang3.Range;
 
+import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,15 +10,8 @@ import java.util.stream.Collectors;
  * Author georgicaracu
  */
 class Validator {
-    private static final Range<String> regionAfrica = Range.between("A", "H");
-    private static final Range<String> regionAsia = Range.between("J", "R");
-    private static final Range<String> regionEurope = Range.between("S", "Z");
-    private static final Range<String> regionNorthAmerica_1 = Range.between("1", "5");
-    private static final Range<String> regionNorthAmerica_2 = Range.between("7F", "70");
-    private static final Range<String> regionOceania = Range.between("6", "7E");
-    private static final Range<String> regionSouthAmerica = Range.between("8", "9");
-    private static final Set<Range<String>> regions = Set.of(regionAfrica, regionAsia, regionEurope, regionNorthAmerica_1,
-            regionNorthAmerica_2, regionOceania, regionSouthAmerica);
+    private final Set<Range<String>> regions =
+            Arrays.stream(Region.values()).map(Region::getRegion).collect(Collectors.toSet());
     private final String value;
 
     private Validator(String value) {
