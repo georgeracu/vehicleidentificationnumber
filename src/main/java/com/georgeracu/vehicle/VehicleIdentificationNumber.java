@@ -1,5 +1,7 @@
 package com.georgeracu.vehicle;
 
+import com.georgeracu.vehicle.wmi.WorldManufacturerIdentifier;
+
 /**
  * Author georgicaracu
  */
@@ -8,16 +10,16 @@ public record VehicleIdentificationNumber(String value) {
         Validator.create(value).validateLength();
     }
 
-    public String worldManufacturerIdentifier() {
-        return this.value.substring(0, 3);
+    public WorldManufacturerIdentifier worldManufacturerIdentifier() {
+        return new WorldManufacturerIdentifier(this.value.substring(0, 3));
     }
 
-    public String vehicleDescriptor() {
-        return this.value.substring(3, 9);
+    public VehicleDescriptor vehicleDescriptor() {
+        return new VehicleDescriptor(this.value.substring(3, 9));
     }
 
-    public String vehicleIdentifier() {
-        return this.value.substring(9);
+    public VehicleIdentifier vehicleIdentifier() {
+        return new VehicleIdentifier(this.value.substring(9));
     }
 }
 

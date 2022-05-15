@@ -1,5 +1,6 @@
 package com.georgeracu.vehicle;
 
+import com.georgeracu.vehicle.wmi.WorldManufacturerIdentifier;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -25,7 +26,7 @@ class VehicleIdentificationNumberTest {
         final var vin = new VehicleIdentificationNumber("AAABBBBBBEFF12345");
 
         // assert
-        assertThat(vin.worldManufacturerIdentifier()).isEqualTo("AAA");
+        assertThat(vin.worldManufacturerIdentifier()).isEqualTo(new WorldManufacturerIdentifier("AAA"));
     }
 
     @Test
@@ -34,7 +35,7 @@ class VehicleIdentificationNumberTest {
         final var vin = new VehicleIdentificationNumber("AAABBBBBBEFF12345");
 
         // assert
-        assertThat(vin.vehicleDescriptor()).isEqualTo("BBBBBB");
+        assertThat(vin.vehicleDescriptor()).isEqualTo(new VehicleDescriptor("BBBBBB"));
     }
 
     @Test
@@ -43,6 +44,6 @@ class VehicleIdentificationNumberTest {
         final var vin = new VehicleIdentificationNumber("AAABBBBBB01234567");
 
         // assert
-        assertThat(vin.vehicleIdentifier()).isEqualTo("01234567");
+        assertThat(vin.vehicleIdentifier()).isEqualTo(new VehicleIdentifier("01234567"));
     }
 }
